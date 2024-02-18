@@ -1,0 +1,22 @@
+server:
+  port: ${OVPNUM_SERVER_PORT}
+spring:
+  config:
+    import:
+      - "optional:file:.env.dev[.properties]"
+      - "optional:file:.env[.properties]"
+  datasource:
+    url: ${OVPNUM_DATASOURCE_URL}
+    username: ${OVPNUM_DATASOURCE_USERNAME}
+    password: ${OVPNUM_DATASOURCE_PASSWORD}
+    driver-class-name: ${OVPNUM_DATASOURCE_DRIVER_CLASS}
+  jpa:
+    generate-ddl: false
+#        hibernate:
+#          ddl-auto: update
+    show-sql: ${OVPNUM_JPA_SHOW_SQL}
+    database-platform: ${OVPNUM_JPA_DATABASE_PLATFORM}
+  flyway:
+    locations: "classpath:db/migration"
+ovpnum:
+  version: "1.0.0"

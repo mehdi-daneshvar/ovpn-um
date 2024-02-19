@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CityServiceImpl implements CityService {
@@ -29,5 +30,10 @@ public class CityServiceImpl implements CityService {
             throw new CityNameExistsException(
                     "شهرستان %s از قبل وجود دارد.".formatted(city.getName())
             );
+    }
+
+    @Override
+    public Optional<City> getCity(Long id) {
+        return cityRepository.findById(id);
     }
 }

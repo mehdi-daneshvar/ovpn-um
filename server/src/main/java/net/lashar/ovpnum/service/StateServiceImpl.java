@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class StateServiceImpl implements StateService{
+public class StateServiceImpl implements StateService {
     @Autowired
     private StateRepository stateRepository;
 
@@ -19,7 +20,7 @@ public class StateServiceImpl implements StateService{
     }
 
     @Override
-    public void addState(State state) throws StateNameExistsException{
+    public void addState(State state) throws StateNameExistsException {
         State existingState =
                 stateRepository.findByName(state.getName())
                         .orElse(null);
@@ -29,5 +30,10 @@ public class StateServiceImpl implements StateService{
             throw new StateNameExistsException(
                     "استان %s از قبل وجود دارد.".formatted(state.getName())
             );
+    }
+
+    @Override
+    public Optional<State> getState(Long id) {
+        return stateRepository.findById(id);
     }
 }

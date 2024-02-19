@@ -21,7 +21,7 @@ public class OrganisationUnit {
     private City city;
 
 
-    @ManyToOne
-    @JoinColumn(name = "parent_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
     private OrganisationUnit parent;
 }
